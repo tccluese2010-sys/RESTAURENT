@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Élite | Premium Dining</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color-start: #1a1a1a;
+            --bg-color-end: #121212;
+            --gold: #D4AF37;
+            --gold-hover: #b5952f;
+            --text-main: #F5F5F5;
+            --text-muted: #a0a0a0;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--bg-color-start) 0%, var(--bg-color-end) 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: shimmer 8s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--bg-color-end);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-color-end);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 4rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .menu-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .menu-img-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .menu-img {
+            transform: scale(1.05);
+        }
+
+        .menu-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .menu-title {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            min-height: 60px;
+        }
+
+        .menu-price {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .btn-ar {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Reservation Strip */
+        .reservation {
+            background: #0a0a0a;
+            padding: 5rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .reservation-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .res-input {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            outline: none;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .res-input:focus {
+            border-color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: var(--bg-color-end);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* AR Modal */
+        .ar-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .ar-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            max-height: 800px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+        }
+
+        #ar-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1); /* Mirror effect */
+        }
+
+        .ar-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.8),
+                0 30px 40px rgba(0,0,0,0.6),
+                0 0 20px rgba(212, 175, 55, 0.3);
+            border: 4px solid rgba(255,255,255,0.1);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+        }
+
+        .ar-overlay.dropped {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .ar-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ar-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s ease;
+        }
+
+        .ar-close:hover {
+            color: var(--gold);
+        }
+
+        .ar-instructions {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-title svg {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            .hero-content {
+                padding: 1.5rem;
+            }
+            .section-title {
+                font-size: 2rem !important;
+                margin-bottom: 2.5rem !important;
+            }
+            .menu-section {
+                padding: 4rem 1rem;
+            }
+            .menu-grid {
+                gap: 2rem;
+            }
+            .reservation {
+                padding: 4rem 1rem;
+            }
+            .res-input {
+                flex: 1 1 100%; /* Force stacking on very small screens */
+            }
+            footer {
+                padding: 3rem 1rem;
+            }
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+            .footer-logo svg {
+                width: 24px;
+                height: 24px;
+            }
+            .ar-overlay {
+                width: 200px;
+                height: 200px;
+            }
+            .video-container {
+                height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Hero View -->
+    <div id="hero-view">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:10px; margin-bottom:15px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
+                    Maison Élite
+                </h1>
+                <p class="hero-subtitle">A Symphony of Taste, Elegance, and Innovation.</p>
+                <button onclick="showMenu()" class="btn btn-primary">Discover the Menu</button>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:8px; margin-bottom:5px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
+                Maison Élite
+            </div>
+            <p class="footer-text">123 Culinary Avenue, Paris, France | +33 1 23 45 67 89</p>
+            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Maison Élite. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Page 2: Menu View -->
+    <div id="menu-view" style="display: none;">
+        <!-- Navigation -->
+        <div style="padding: 2rem; position: absolute; z-index: 10;">
+            <button onclick="showHome()" class="btn" style="padding: 0.5rem 1rem; border-color: rgba(212, 175, 55, 0.5); font-size: 0.8rem; background: transparent; cursor: pointer;">&larr; Back to Home</button>
+        </div>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-section">
+            <h2 class="section-title">Culinary Masterpieces</h2>
+            <div class="menu-grid" id="menu-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- Reservation Section -->
+        <section class="reservation">
+            <h2 class="section-title" style="margin-bottom: 1rem; font-size: 2.5rem;">Reserve Your Experience</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Join us for an unforgettable evening of culinary excellence.</p>
+            <form class="reservation-form" onsubmit="event.preventDefault(); alert('Reservation requested!');">
+                <input type="date" class="res-input" required>
+                <input type="time" class="res-input" required>
+                <input type="number" class="res-input" placeholder="Guests" min="1" max="10" required>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:8px; margin-bottom:5px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
+                Maison Élite
+            </div>
+            <p class="footer-text">123 Culinary Avenue, Paris, France | +33 1 23 45 67 89</p>
+            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Maison Élite. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- AR Modal -->
+    <div class="ar-modal" id="ar-modal">
+        <button class="ar-close" id="ar-close">&times;</button>
+        <div class="video-container">
+            <video id="ar-video" autoplay playsinline></video>
+            <div class="ar-overlay" id="ar-overlay">
+                <img src="" alt="AR Food" id="ar-img">
+            </div>
+            <div class="ar-instructions">Point your camera at a flat surface</div>
+        </div>
+        <p class="error-message" id="ar-error"></p>
+    </div>
+
+    <script>
+        // SPA View Switching Logic
+        function showMenu() {
+            document.getElementById('hero-view').style.display = 'none';
+            document.getElementById('menu-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('menu-view').style.display = 'none';
+            document.getElementById('hero-view').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // Menu Data
+        const menuItems = [
+            {
+                id: 1,
+                title: 'Truffle Risotto',
+                desc: 'Creamy Arborio rice enriched with wild mushrooms, aged parmesan, and freshly shaved black truffle.',
+                price: '$45',
+                img: 'https://images.unsplash.com/photo-1626200419199-391ae4be7a41?q=100&w=1600&auto=format&fit=crop'
+            },
+            {
+                id: 2,
+                title: 'Wagyu Ribeye',
+                desc: 'A5 Japanese Wagyu perfectly seared, accompanied by pomme purée and a rich red wine demi-glace.',
+                price: '$120',
+                img: 'https://images.unsplash.com/photo-1546964124-0cce460f38ef?q=100&w=1600&auto=format&fit=crop'
+            },
+            {
+                id: 3,
+                title: 'Lobster Thermidor',
+                desc: 'Fresh Maine lobster baked in a rich cognac cream sauce with a Gruyère cheese crust.',
+                price: '$85',
+                img: 'https://images.unsplash.com/photo-1553247407-23251ce81f59?q=100&w=1600&auto=format&fit=crop'
+            },
+            {
+                id: 4,
+                title: 'Gold Leaf Caviar',
+                desc: 'Premium Beluga caviar served with traditional blinis, crème fraîche, and edible 24k gold leaf.',
+                price: '$250',
+                img: 'https://images.unsplash.com/photo-1621255740417-7e61e053a992?q=100&w=1600&auto=format&fit=crop'
+            },
+            {
+                id: 5,
+                title: 'Duck à l\'Orange',
+                desc: 'Classic roasted duck breast with a Grand Marnier reduction, accompanied by glazed heirloom carrots.',
+                price: '$55',
+                img: 'https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?q=100&w=1600&auto=format&fit=crop'
+            },
+            {
+                id: 6,
+                title: 'Chocolate Soufflé',
+                desc: 'Valrhona dark chocolate soufflé served warm with a center of molten ganache and vanilla bean ice cream.',
+                price: '$28',
+                img: 'https://images.unsplash.com/photo-1624353365286-cb18d415f949?q=100&w=1600&auto=format&fit=crop'
+            }
+        ];
+
+        // Populate Menu
+        const menuGrid = document.getElementById('menu-grid');
+        
+        menuItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="menu-img-container">
+                    <img src="${item.img}" alt="${item.title}" class="menu-img">
+                </div>
+                <div class="menu-content">
+                    <h3 class="menu-title">${item.title}</h3>
+                    <p class="menu-desc">${item.desc}</p>
+                    <div class="menu-price">${item.price}</div>
+                    <button class="btn btn-ar" onclick="openAR('${item.img}')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                            <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                            <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                            <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Dine on Your Table
+                    </button>
+                </div>
+            `;
+            menuGrid.appendChild(card);
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, 100); // Small stagger effect handling
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.menu-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // AR Functionality
+        const arModal = document.getElementById('ar-modal');
+        const arCloseBtn = document.getElementById('ar-close');
+        const videoElement = document.getElementById('ar-video');
+        const arOverlay = document.getElementById('ar-overlay');
+        const arImg = document.getElementById('ar-img');
+        const errorMsg = document.getElementById('ar-error');
+        let currentStream = null;
+
+        function openAR(imgSrc) {
+            arModal.classList.add('active');
+            arImg.src = imgSrc;
+            arOverlay.classList.remove('dropped');
+            errorMsg.style.display = 'none';
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Try facingMode: environment first for rear camera, fallback to user
+                const constraints = {
+                    video: { facingMode: 'environment' }
+                };
+
+                navigator.mediaDevices.getUserMedia(constraints)
+                    .then(stream => {
+                        currentStream = stream;
+                        videoElement.srcObject = stream;
+                        
+                        // Drop animation after a slight delay
+                        setTimeout(() => {
+                            arOverlay.classList.add('dropped');
+                        }, 1000);
+                    })
+                    .catch(err => {
+                        console.error("Camera error:", err);
+                        // Fallback to front camera if rear fails or isn't available
+                        navigator.mediaDevices.getUserMedia({ video: true })
+                            .then(stream => {
+                                currentStream = stream;
+                                videoElement.srcObject = stream;
+                                setTimeout(() => {
+                                    arOverlay.classList.add('dropped');
+                                }, 1000);
+                            })
+                            .catch(err2 => {
+                                errorMsg.textContent = "Unable to access camera. Please check permissions.";
+                                errorMsg.style.display = 'block';
+                            });
+                    });
+            } else {
+                errorMsg.textContent = "Your browser does not support camera access.";
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function closeAR() {
+            arModal.classList.remove('active');
+            arOverlay.classList.remove('dropped');
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+                currentStream = null;
+                videoElement.srcObject = null;
+            }
+        }
+
+        arCloseBtn.addEventListener('click', closeAR);
+        
+    </script>
+</body>
+</html>
