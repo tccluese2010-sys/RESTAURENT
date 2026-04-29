@@ -3,431 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Élite | Premium Dining</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <title>Burger Place | Premium Burgers</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color-start: #1a1a1a;
-            --bg-color-end: #121212;
-            --gold: #D4AF37;
-            --gold-hover: #b5952f;
-            --text-main: #F5F5F5;
-            --text-muted: #a0a0a0;
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Lato', sans-serif;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--bg-color-start) 0%, var(--bg-color-end) 100%);
-            color: var(--text-main);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
-            font-weight: 400;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            animation: shimmer 8s infinite alternate ease-in-out;
-            z-index: 1;
-        }
-
-        @keyframes shimmer {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 2rem;
-        }
-
-        .hero-title {
-            font-size: 5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-main);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border: 1px solid var(--gold);
-            background: transparent;
-            color: var(--gold);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: var(--gold);
-            color: var(--bg-color-end);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--bg-color-end);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--gold);
-        }
-
-        /* Menu Section */
-        .menu-section {
-            padding: 8rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 4rem;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .menu-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-            backdrop-filter: blur(10px);
-        }
-
-        .menu-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .menu-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .menu-img-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .menu-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .menu-card:hover .menu-img {
-            transform: scale(1.05);
-        }
-
-        .menu-content {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .menu-title {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .menu-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            min-height: 60px;
-        }
-
-        .menu-price {
-            font-size: 1.25rem;
-            color: var(--text-main);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .btn-ar {
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        /* Reservation Strip */
-        .reservation {
-            background: #0a0a0a;
-            padding: 5rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-            z-index: 2;
-        }
-
-        .reservation-form {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 2rem auto 0;
-        }
-
-        .res-input {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            outline: none;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .res-input:focus {
-            border-color: var(--gold);
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: var(--bg-color-end);
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-logo {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
-
-        /* AR Modal */
-        .ar-modal {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .ar-modal.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 80vh;
-            max-height: 800px;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #000;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
-        }
-
-        #ar-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scaleX(-1); /* Mirror effect */
-        }
-
-        .ar-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 
-                inset 0 0 20px rgba(0,0,0,0.8),
-                0 30px 40px rgba(0,0,0,0.6),
-                0 0 20px rgba(212, 175, 55, 0.3);
-            border: 4px solid rgba(255,255,255,0.1);
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-        }
-
-        .ar-overlay.dropped {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        .ar-overlay img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ar-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 1001;
-            transition: color 0.3s ease;
-        }
-
-        .ar-close:hover {
-            color: var(--gold);
-        }
-
-        .ar-instructions {
-            position: absolute;
-            bottom: 2rem;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            font-size: 1.1rem;
-            pointer-events: none;
-        }
-
-        .error-message {
-            color: #ff4444;
-            margin-top: 1rem;
-            text-align: center;
-            display: none;
-        }
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-title svg {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 5px;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            .hero-content {
-                padding: 1.5rem;
-            }
-            .section-title {
-                font-size: 2rem !important;
-                margin-bottom: 2.5rem !important;
-            }
-            .menu-section {
-                padding: 4rem 1rem;
-            }
-            .menu-grid {
-                gap: 2rem;
-            }
-            .reservation {
-                padding: 4rem 1rem;
-            }
-            .res-input {
-                flex: 1 1 100%; /* Force stacking on very small screens */
-            }
-            footer {
-                padding: 3rem 1rem;
-            }
-            .footer-logo {
-                font-size: 1.5rem;
-            }
-            .footer-logo svg {
-                width: 24px;
-                height: 24px;
-            }
-            .ar-overlay {
-                width: 200px;
-                height: 200px;
-            }
-            .video-container {
-                height: 70vh;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -435,25 +16,64 @@
     <div id="hero-view">
         <!-- Hero Section -->
         <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:10px; margin-bottom:15px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
-                    Maison Élite
-                </h1>
-                <p class="hero-subtitle">A Symphony of Taste, Elegance, and Innovation.</p>
-                <button onclick="showMenu()" class="btn btn-primary">Discover the Menu</button>
+            <header class="hero-nav">
+                <a href="index.html" class="brand">Burger Place</a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </header>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">Gourmet burger destination</span>
+                    <h1 class="hero-title">Welcome to Burger Place</h1>
+                    <p class="hero-subtitle">Fresh, delicious burgers made with love</p>
+                    <div class="hero-actions">
+                        <a href="menu.html" class="btn btn-primary">Explore Menu</a>
+                        <a href="#reservation" class="btn">Reserve Now</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-stage">
+                        <div class="floating-item item-fries" data-speed="0.06">
+                            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=80" alt="Fries">
+                        </div>
+                        <div class="floating-item item-drink" data-speed="-0.04">
+                            <img src="https://images.unsplash.com/photo-1510626176961-4b37b8430c43?auto=format&fit=crop&w=600&q=80" alt="Cold drink">
+                        </div>
+                        <div class="floating-item item-sauce" data-speed="0.05">
+                            <img src="Whisk_0b05bca323ebe3897cd4cc956e892635dr.jpeg" alt="Sauce">
+                        </div>
+                        <div class="floating-item item-wrap" data-speed="-0.07">
+                            <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=600&q=80" alt="Wrap">
+                        </div>
+                        <div class="burger-card" data-speed="0.02">
+                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80" alt="Burger">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-        
+
+        <section class="menu-feature" style="margin: 0 2rem 3rem;">
+            <img src="Whisk_0b05bca323ebe3897cd4cc956e892635dr.jpeg" alt="Cool Drinks" class="menu-feature-img">
+            <div class="menu-feature-copy">
+                <span class="eyebrow">Cool Drinks</span>
+                <h3>Chilled Refreshments</h3>
+                <p>Discover a premium drink collection designed to refresh every bite with crisp ice, bright citrus, and bold flavor.</p>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer>
             <div class="footer-logo">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:8px; margin-bottom:5px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
-                Maison Élite
+                Burger Place
             </div>
-            <p class="footer-text">123 Culinary Avenue, Paris, France | +33 1 23 45 67 89</p>
-            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Maison Élite. All rights reserved.</p>
+            <p class="footer-text">123 Culinary Avenue | +33 1 23 45 67 89</p>
+            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Burger Place. All rights reserved.</p>
         </footer>
     </div>
 
@@ -473,10 +93,10 @@
         </section>
 
         <!-- Reservation Section -->
-        <section class="reservation">
+        <section id="reservation" class="reservation">
             <h2 class="section-title" style="margin-bottom: 1rem; font-size: 2.5rem;">Reserve Your Experience</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Join us for an unforgettable evening of culinary excellence.</p>
-            <form class="reservation-form" onsubmit="event.preventDefault(); alert('Reservation requested!');">
+            <form class="reservation-form" onsubmit="handleReservationSubmit(event)">
                 <input type="date" class="res-input" required>
                 <input type="time" class="res-input" required>
                 <input type="number" class="res-input" placeholder="Guests" min="1" max="10" required>
@@ -488,10 +108,10 @@
         <footer>
             <div class="footer-logo">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:8px; margin-bottom:5px;"><path d="M3 17h18"></path><path d="M6 13a6 6 0 0 1 12 0v4H6v-4z"></path><path d="M12 9V7"></path><path d="M11 7h2"></path></svg>
-                Maison Élite
+                Burger Place
             </div>
-            <p class="footer-text">123 Culinary Avenue, Paris, France | +33 1 23 45 67 89</p>
-            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Maison Élite. All rights reserved.</p>
+            <p class="footer-text">123 Culinary Avenue | +33 1 23 45 67 89</p>
+            <p class="footer-text" style="font-size: 0.8rem;">&copy; 2026 Burger Place. All rights reserved.</p>
         </footer>
     </div>
 
@@ -509,6 +129,60 @@
     </div>
 
     <script>
+        /*
+        EMAILJS SETUP INSTRUCTIONS FOR RESERVATION FORM:
+        Same as contact form - use the same EmailJS account and credentials.
+        Create a separate template for reservations with these variables:
+        - {{reservation_date}}
+        - {{reservation_time}} 
+        - {{guest_count}}
+        - {{to_email}} (mhpk2010@gmail.com)
+        */
+
+        // EmailJS Configuration - USE SAME CREDENTIALS AS CONTACT FORM
+        const EMAILJS_CONFIG = {
+            SERVICE_ID: 'YOUR_SERVICE_ID',
+            TEMPLATE_ID: 'YOUR_RESERVATION_TEMPLATE_ID', // Different template for reservations
+            PUBLIC_KEY: 'YOUR_PUBLIC_KEY'
+        };
+
+        // Initialize EmailJS
+        (function(){
+            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        })();
+
+        function handleReservationSubmit(event) {
+            event.preventDefault();
+            
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Booking...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(event.target);
+            const inputs = event.target.querySelectorAll('input');
+            
+            const templateParams = {
+                reservation_date: inputs[0].value, // date
+                reservation_time: inputs[1].value, // time
+                guest_count: inputs[2].value, // number of guests
+                to_email: 'mhpk2010@gmail.com'
+            };
+
+            emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    alert('Reservation request sent! We\'ll confirm your booking soon.');
+                    event.target.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    alert('Sorry, there was an error with your reservation. Please try again.');
+                    console.error('EmailJS error:', error);
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        }
+
         // SPA View Switching Logic
         function showMenu() {
             document.getElementById('hero-view').style.display = 'none';
@@ -521,6 +195,34 @@
             document.getElementById('hero-view').style.display = 'block';
             window.scrollTo(0, 0);
         }
+
+        // Parallax and hover motion for hero floating items
+        const heroStage = document.querySelector('.visual-stage');
+        const floats = document.querySelectorAll('.floating-item, .burger-card');
+
+        function updateParallax(event) {
+            if (!heroStage) return;
+            const { left, top, width, height } = heroStage.getBoundingClientRect();
+            const x = (event.clientX - (left + width / 2)) / width * 40;
+            const y = (event.clientY - (top + height / 2)) / height * 40;
+
+            floats.forEach(node => {
+                const speed = Number(node.dataset.speed || 0.04);
+                node.style.setProperty('--offset-x', `${x * speed}px`);
+                node.style.setProperty('--offset-y', `${y * speed}px`);
+            });
+        }
+
+        document.addEventListener('mousemove', updateParallax);
+
+        // Reset transforms if mouse leaves hero
+        const heroSection = document.querySelector('.hero');
+        heroSection?.addEventListener('mouseleave', () => {
+            floats.forEach(node => {
+                node.style.removeProperty('--offset-x');
+                node.style.removeProperty('--offset-y');
+            });
+        });
 
         // Menu Data
         const menuItems = [
@@ -597,20 +299,66 @@
             menuGrid.appendChild(card);
         });
 
-        // Intersection Observer for scroll animations
+        // Intersection Observer for scroll animations with stagger effect
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, 100); // Small stagger effect handling
+                    }, index * 100); // Staggered animation
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, { threshold: 0.15, rootMargin: "0px 0px -80px 0px" });
 
         document.querySelectorAll('.menu-card').forEach(card => {
             observer.observe(card);
+        });
+
+        // Scroll animations for section titles
+        const titleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    titleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.section-title').forEach(title => {
+            titleObserver.observe(title);
+        });
+
+        // Add scroll parallax effect on hero section
+        let ticking = false;
+        function updateHeroParallax() {
+            const scrollY = window.scrollY;
+            const heroSection = document.querySelector('.hero');
+            if (heroSection && scrollY < window.innerHeight) {
+                const parallaxValue = scrollY * 0.5;
+                const opacity = Math.max(0, 1 - scrollY / (window.innerHeight * 1.5));
+                heroSection.style.backgroundPosition = `center ${parallaxValue}px`;
+                document.querySelector('.hero-copy').style.transform = `translateY(${scrollY * 0.3}px)`;
+                document.querySelector('.hero-copy').style.opacity = opacity;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeroParallax);
+                ticking = true;
+            }
+            
+            // Navbar glassmorphism scroll effect
+            const navbar = document.querySelector('.hero-nav');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
         });
 
         // AR Functionality
